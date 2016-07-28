@@ -14,9 +14,9 @@ This project requires **Python 2.7** and the following Python libraries installe
 
 - [NumPy](http://www.numpy.org/)
 - [Pandas](http://pandas.pydata.org)
-- [matplotlib](http://matplotlib.org/)
-- [scikit-learn](http://scikit-learn.org/stable/)
-- [scipy](https://www.scipy.org/)
+- [Matplotlib](http://matplotlib.org/)
+- [Scikit-learn](http://scikit-learn.org/stable/)
+- [Scipy](https://www.scipy.org/)
 
 ### Code
 
