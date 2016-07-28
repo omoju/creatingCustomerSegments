@@ -8,10 +8,6 @@ The goal of this project is to find what types of customers the distributors hav
 
 
 
-## Analysis
-An analysis of the project can be found here: [report/creatingCustomerSegments.pdf](report/creatingCustomerSegments.pdf)
-
-
 ### Install
 
 This project requires **Python 2.7** and the following Python libraries installed:
@@ -20,6 +16,7 @@ This project requires **Python 2.7** and the following Python libraries installe
 - [Pandas](http://pandas.pydata.org)
 - [matplotlib](http://matplotlib.org/)
 - [scikit-learn](http://scikit-learn.org/stable/)
+- [scipy](https://www.scipy.org/)
 
 ### Code
 
