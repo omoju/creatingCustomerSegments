@@ -117,7 +117,7 @@ This project applies unsupervised learning techniques on product spending data c
 
 \section*{Problem Statement}
 
-A wholesale distributor recently tested a change to their delivery method for some customers, by moving from a morning delivery service five days a week to a cheaper evening delivery service three days a week. Initial testing did not discover any significant unsatisfactory results, so they implemented the cheaper option for all customers. Almost immediately, the distributor began getting complaints about the delivery service change and customers were canceling deliveries — losing the distributor more money than what was being saved.
+A wholesale distributor recently tested a change to their delivery method for some customers, by moving from a morning delivery service five days a week to a cheaper evening delivery service three days a week. Initial testing did not discover any significant unsatisfactory results, so they implemented the cheaper option for all customers. Almost immediately, the distributor began getting complaints about the delivery service change and customers were canceling deliveries--losing the distributor more money than what was being saved.
 
 The goal of the wholesale distributor is to find what types of customers they have to help them make better, more informed business decisions in the future.
 
@@ -146,12 +146,9 @@ To find out what types of customers the wholesale distributors have we suggest t
 
 
 \section*{Metrics}
+For this problem, we don't know how many ``segments'' of customers there are. In fact, this is what we are trying to learn. As such, we can use the \emph{silhouette score} of each data point to determine how similar it is to its assigned cluster from -1 (dissimilar) to 1 (similar). The \emph{mean silhouette coefficient score} can the serve as a metric that can guides us in learning the optimal number of segments in the data.
 
-In this section, you will need to clearly define the metrics or calculations you will use to measure performance of a model or result in your project. These calculations and metrics should be justified based on the characteristics of the problem and problem domain. Questions to ask yourself when writing this section:
-\begin{itemize}% 
-\item Are the metrics you’ve chosen to measure the performance of your models clearly discussed and defined?
-\item Have you provided reasonable justification for the metrics chosen based on the problem and solution?
-\end{itemize}
+
 
 %----------------------------------------------------------------------------------------
 %  CHAPTER 
