@@ -156,17 +156,44 @@ For this problem, we don't know how many ``segments'' of customers there are. In
 
 \chapter*{Analysis}
 
-(approximately 2 - 4 pages)
 \section*{Data Exploration}
 
-In this section, you will be expected to analyze the data you are using for the problem. This data can either be in the form of a dataset (or datasets), input data (or input files), or even an environment. The type of data should be thoroughly described and, if possible, have basic statistics and information presented (such as discussion of input features or defining characteristics about the input or environment). Any abnormalities or interesting qualities about the data that may need to be addressed have been identified (such as features that need to be transformed or the possibility of outliers). Questions to ask yourself when writing this section:
+The dataset used in this project was created by UC Irvine's' Center for Machine Learning and Intelligent Systems. The data is stored in a CSV file where each row corresponds to an order.
 
-\begin{itemize}% 
-\item If a dataset is present for this problem, have you thoroughly discussed certain features about the dataset? Has a data sample been provided to the reader?
-\item If a dataset is present for this problem, are statistics about the dataset calculated and reported? Have any relevant results from this calculation been discussed?
-\item If a dataset is not present for this problem, has discussion been made about the input space or input data for your problem?
-\item Are there any abnormalities or characteristics about the input space or dataset that need to be addressed? (categorical variables, missing values, outliers, etc.)
-\end{itemize}
+\section*{Sample Data Points}
+To gain a better understanding of the customers and how their data will transform through the analysis, we randomly selected three data points that varied significantly from each other. 
+
+\begin{table}[!htbp]
+  \begin{center}
+  \caption{Samples' category spending.}
+    \begin{tabular}{ |l|l|l|l|l|l|l| } 
+    \hline
+    Sample & Fresh & Milk & Grocery & Frozen & Detergents\_Paper & Delicatessen\\[1ex]
+
+    \hline
+    
+      0 &12669 &9656  &7561  &214 &2674  &1338 \\
+      1 &3067  &13240 &23127 &3941  &9959  &731 \\
+      2 &32717 &16784 &13626 &60869 &1272  &5609 \\
+    \hline
+    \end{tabular}
+    \label{tableSamplesCategorySpending}
+  \end{center}
+\end{table}
+
+\begin{figure}[!hbtp]
+\centering
+    \subfloat[]{%
+    \includegraphics[width=0.5\textwidth]{figures/percentileRanksSampleSpending}
+    \label{percentileRanksSampleSpending}}
+    
+    \caption{\textbf{Percentile ranks of samples' category spending. }
+\end{figure}
+
+
+\section*{Outlier detection}
+As part of the data exploration process, we were careful to analyze the data for potential outliers. One of the first task we did was visualize the salary of Enron executives \ref{salary}. From that visualization, it was clear that there was an outlier in the dataset. We found a data-point that was completely outside of a reasonable range as can be seen from figures \ref{salary} and \ref{SalaryBonus}. 
+
 
 \section*{Exploratory Visualization}
 
