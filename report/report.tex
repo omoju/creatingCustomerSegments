@@ -272,12 +272,23 @@ The fourth principal component is made up of a large positive weight in \texttt{
 The first dimension seems to represent customers who spend \emph{significantly} on \texttt{Detergents\_Paper}, spend okay on \texttt{Milk} and \texttt{Grocery}, and none to less on \texttt{Fresh} produce and \texttt{Frozen} products. Another way to understand these first four dimensions is that they each represent a \emph{customer segment}
 
 \section*{Implementation}
-In this section, the process for which metrics, algorithms, and techniques that you implemented for the given data will need to be clearly documented. It should be abundantly clear how the implementation was carried out, and discussion should be made regarding any complications that occurred during this process. Questions to ask yourself when writing this section:
-\begin{itemize}% 
-\item Is it made clear how the algorithms and techniques were implemented with the given datasets or input data?
-\item Were there any complications with the original metrics or techniques that required changing prior to acquiring a solution?
-\item Was there any part of the coding process (e.g., writing complicated functions) that should be documented?
-\end{itemize}
+We selected the \textbf{KMeans} algorithm for the following reasons:
+\begin{itemize} 
+\item We want to have a clear delineation of who the various customer segmets are. KMeans gives hard partitions and will allow for this.  
+\item KMeans scales and is a simple and efficient algorithm unlike the Gaussian Mixture Model which does not scale. If we ever grow the dataset, this difference will save a lot of time in the future.  
+\item Easy to understand and compute
+\item It's efficient. The time requirement is $O(I*K*m*n)$ as long as the number of clusters is significantly less than m.
+  \begin{itemize} 
+    \item where $I$ is the number of iterations required for convergence
+    \item where $K$ is the number of clusters
+    \item where $m$ the number of points
+    \item where $n$ is the number of attributes
+    \end{itemize}  
+\end{itemize} 
+
+Another algorithm we considered was the Gaussian Mixture Model. Which allows for soft-classification, i.e., data point can belong to more than one cluster with probabilities.
+   
+
 
 
 \section*{Refinement}
