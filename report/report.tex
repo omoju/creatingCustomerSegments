@@ -190,6 +190,23 @@ To gain a better understanding of the customers and how their data will transfor
 \end{figure}
 
 
+As a means of understanding and validating the usefulness of the learned customer segments, we predicted the kind of establishment (customer) each of the three samples represent.
+
+\begin{itemize}
+\item \textbf{Sample 0} \\
+
+From the heat-map in figure \ref{percentileRanksSampleSpending} we can see that this sample represents an establishment that spends very little on texttt{Frozen} category as compared to other product categories. Furthermore, this kind of establishment also spends significantly on texttt{Milk}, at eighty-three percentile to be exact. My intuition leads me to think that this \emph{might} be a \textbf{market}. 
+
+\item \textbf{Sample 1} \\ 
+This kind of establishment spends less on texttt{Delicatessen} at forty-first percentile and even significantly less on the texttt{Fresh} category. On the other categories, their spending is at well over the seventieth percentile range. My intuition leads me to believe this might be a place that serves meals and offers lodgings like a \textbf{hotel} or a \textbf{university} with a residence halls and adjoining cafeteria. 
+
+\item \textbf{Sample 2} \\
+This establishment spends significantly on all categories with the exception of the texttt{Detergents\_Paper} category where their spending is limited to the fifty-eight percentile. My guess is that this sample represents \textbf{wholesale retailer} like a ``costco" or ``Sam's club".
+
+\end{itemize}
+
+
+
 \section*{Feature Relevance}
 Let's figure out if it's possible to determine whether customers purchasing some amount of one category of products will necessarily purchase some proportional amount of another category of products? 
 
@@ -317,7 +334,7 @@ We calculated the mean silhouette coefficient for the data points and determined
 \centering
     
     \includegraphics[width=0.9\textwidth]{figures/kMeansModelResults}
-    \label{meanSilhouetteScore}
+    \label{kMeansModelResults}
     
     \caption{\textbf{Cluster learning on PCA reduced data.} \textit{Centroids are marked by the numbers, while the transformed sample data are marked by the Xs}}
 \end{figure}
@@ -335,7 +352,7 @@ From the two clusters learned from the implementation of the KMeans algorithm, w
 Focusing on \textbf{Segment 0}, that cluster center seems to describe establishment that spend significantly on fresh and frozen products. From this, we are inclined to believe that establishment that this segment implies might be best described as belonging to the set that includes, but not limited to \textbf{(supermarkets, caterers, restaurants)}.
 
 
-Also, \textbf{segment 1}'s spending on milk, grocery, frozen and detergents categories is around or over the 75\% range for this dataset. Based on intuition, we are led to think that this customer segments might best be described as belonging to the set that includes, but not limited to  \textbf{(child care centers, public school systems, hotels, hospitals, universities, military bases)}. 
+Also, \textbf{Segment 1}'s spending on milk, grocery, frozen and detergents categories is around or over the 75\% range for this dataset. Based on intuition, we are led to think that this customer segments might best be described as belonging to the set that includes, but not limited to  \textbf{(child care centers, public school systems, hotels, hospitals, universities, military bases)}. 
 
 
 \begin{table}[!htbp]
@@ -356,56 +373,31 @@ Also, \textbf{segment 1}'s spending on milk, grocery, frozen and detergents cate
   \end{center}
 \end{table}
 
-
 \section*{Model Evaluation and Validation}
-In this section, the final model and any supporting qualities should be evaluated in detail. It should be clear how the final model was derived and why this model was chosen. In addition, some type of analysis should be used to validate the robustness of this model and its solution, such as manipulating the input data or environment to see how the model’s solution is affected (this is called sensitivity analysis). Questions to ask yourself when writing this section:
-\begin{itemize}% 
-\item Is the final model reasonable and aligning with solution expectations? Are the final parameters of the model appropriate?
-\item Has the final model been tested with various inputs to evaluate whether the model generalizes well to unseen data?
-\item Is the model robust enough for the problem? Do small perturbations (changes) in training data or the input space greatly affect the results?
-\item Can results found from the model be trusted?
-\end{itemize}
+
+For each sample point, we predicted which customer segment best represents it. From our prediction, all three sample points were put in segment 1 as can be seen from figure 7. 
+
+\begin{figure}[!hbtp]
+\centering
+    
+    \includegraphics[width=0.6\textwidth]{figures/samplePointSegment}
+    \label{samplePointSegment}
+    
+    \caption{\textbf{Predicted segments for sample data points.}}
+\end{figure}
+
+Based on our intuition, \textbf{Sample 0} doesn't line up. We thought that sample was a small market, and \emph{segment 1} more like a place to caters to feeding and caring for children.
+
+For \textbf{Sample 1} our reasoning holds. If we generalize \emph{child-care center} to institutions that feed people and do a lot of laundry like beddings and table cloths, then it makes sense that \textbf{Sample 1} is assigned to cluster 1.
+
+The predicted cluster for \textbf{Sample 2} doesn't line up. We thought of cluster 1 as a child-care center or restaurant, and \textbf{Sample 2} as a wholesale supermarket like Costo. From the clusters in figure \ref{kMeansModelResults}, we can see that this point is amongst the farthest away from the center, which corresponds to a numerically larger data point, so perhaps it still falls in line with our intuition.
+
 
 \section*{Justification}
-In this section, your model’s final solution and its results should be compared to the benchmark you established earlier in the project using some type of statistical analysis. You should also justify whether these results and the solution are significant enough to have solved the problem posed in the project. Questions to ask yourself when writing this section:
-\begin{itemize}% 
-\item Are the final results found stronger than the benchmark result reported earlier?
-\item Have you thoroughly analyzed and discussed the final solution?
-\item Is the final solution significant enough to have solved the problem?
-\end{itemize}
+
 
 %----------------------------------------------------------------------------------------
 %  CHAPTER 
-%----------------------------------------------------------------------------------------
-
-\chapter*{Conclusion}
-(approximately 1 - 2 pages)
-
-\section*{Free-Form Visualization}
-In this section, you will need to provide some form of visualization that emphasizes an important quality about the project. It is much more free-form, but should reasonably support a significant result or characteristic about the problem that you want to discuss. Questions to ask yourself when writing this section:
-\begin{itemize}% 
-\item Have you visualized a relevant or important quality about the problem, dataset, input data, or results?
-\item Is the visualization thoroughly analyzed and discussed?
-\item If a plot is provided, are the axes, title, and datum clearly defined?
-\end{itemize}
-
-
-\section*{Reflection}
-In this section, you will summarize the entire end-to-end problem solution and discuss one or two particular aspects of the project you found interesting or difficult. You are expected to reflect on the project as a whole to show that you have a firm understanding of the entire process employed in your work. Questions to ask yourself when writing this section:
-\begin{itemize}% 
-\item Have you thoroughly summarized the entire process you used for this project?
-\item Were there any interesting aspects of the project?
-\item Were there any difficult aspects of the project?
-\item Does the final model and solution fit your expectations for the problem, and should it be used in a general setting to solve these types of problems?
-\end{itemize}
-
-\section*{Improvement}
-In this section, you will need to provide discussion as to how one aspect of the implementation you designed could be improved. As an example, consider ways your implementation can be made more general, and what would need to be modified. You do not need to make this improvement, but the potential solutions resulting from these changes are considered and compared/contrasted to your current solution. Questions to ask yourself when writing this section:
-\begin{itemize}% 
-\item Are there further improvements that could be made on the algorithms or techniques you used in this project?
-\item Were there algorithms or techniques you researched that you did not know how to implement, but would consider using if you knew how?
-\item If you used your final solution as the new benchmark, do you think an even better solution exists?
-\end{itemize}
 
 
 
