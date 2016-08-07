@@ -196,7 +196,11 @@ Let's figure out if it's possible to determine whether customers purchasing some
 
 To do this, we can train a supervised regression learner on a subset of the data with one feature removed, and then score how well that model can predict the removed feature.
 
-We predicted the impact of the feature \texttt{Grocery} on customers' spending habits. The prediction score was 0.682 out of 1. This score which tends towards being high indicates that it this feature is not necessary for identifying customers' spending habits. The reason is as follows: when customers spend on \texttt{Grocery} they also spend on other features, which means we can't decipher spending habits. What would be better is to regress on a feature that has a \textbf{low} $R^2$ score indicating low correlation.
+We predicted the impact of the feature \texttt{Grocery} on customers' spending habits. The prediction score was 0.682 out of 1. This score which tends towards being high indicates that it this feature is not necessary for identifying customers' spending habits. The reason is as follows: 
+\begin {itemize}
+\item when customers spend on \texttt{Grocery} they also spend on other features, which means we can't decipher spending habits. 
+\end{itemize}
+What would be better is to regress on a feature that has a \textbf{low} $R^2$ score indicating low correlation.
 
 
 To get a better understanding of the dataset, we can construct a scatter matrix of each of the six product features present in the data. From figure \ref{scatterplot} we can see that the data for these features is not normally distributed. Its skewed to the right and has a long tail.
@@ -219,7 +223,10 @@ Another pair was \texttt{Milk} and \texttt{Detergents\_Paper}, the pair had a co
 
 
 \section*{Outlier detection}
-As part of the data exploration process, we were careful to analyze the data for potential outliers. One of the first task we did was visualize the salary of Enron executives \ref{salary}. From that visualization, it was clear that there was an outlier in the dataset. We found a data-point that was completely outside of a reasonable range as can be seen from figures \ref{salary} and \ref{SalaryBonus}. 
+The algorithm that we will be using to cluster the data points, \texttt{KMeans} is \emph{very sensitive} to outliers. Since this algorithm uses the distance from the centroids of the clusters, i.e. the means to calculate which data points belong to what cluster, leaving values that are very far off from the rest will influence the structure, leading to undesirable clusters.
+
+As part of the data exploration process, we were careful to analyze the data for potential outliers. We used Tukey's Method for identfying outliers to clean the data. We removed 42 data points from our dataset which corresponds to 10\% of the dataset. In this case we still have around 390 uniques data points for a problem with 6 variables. 
+
 
 
 \section*{Exploratory Visualization}
