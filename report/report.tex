@@ -312,12 +312,49 @@ We calculated the mean silhouette coefficient for the data points and determined
     \caption{\textbf{The mean silhouette coefficient score for several hypothetical clusters.}}
 \end{figure}
 
+
+\begin{figure}[!hbtp]
+\centering
+    
+    \includegraphics[width=0.9\textwidth]{figures/kMeansModelResults}
+    \label{meanSilhouetteScore}
+    
+    \caption{\textbf{Cluster learning on PCA reduced data.} \textit{Centroids are marked by the numbers, while the transformed sample data are marked by the Xs}}
+\end{figure}
+
+
+
 %----------------------------------------------------------------------------------------
 %  CHAPTER 
 %----------------------------------------------------------------------------------------
 
 \chapter*{Results}
-(approximately 2 - 3 pages)
+
+From the two clusters learned from the implementation of the KMeans algorithm, with respect to the problem of creating customer segments, a cluster's center point corresponds to the average customer of that segment. Our goal then becomes describing the kinds of \emph{establishments} that these cluster centers might be describing.
+
+Focusing on \textbf{Segment 0}, that cluster center seems to describe establishment that spend significantly on fresh and frozen products. From this, we are inclined to believe that establishment that this segment implies might be best described as belonging to the set that includes, but not limited to \textbf{(supermarkets, caterers, restaurants)}.
+
+
+Also, \textbf{segment 1}'s spending on milk, grocery, frozen and detergents categories is around or over the 75\% range for this dataset. Based on intuition, we are led to think that this customer segments might best be described as belonging to the set that includes, but not limited to  \textbf{(child care centers, public school systems, hotels, hospitals, universities, military bases)}. 
+
+
+\begin{table}[!htbp]
+  \begin{center}
+  \caption{Segments \emph{learned} from clustering.}
+    \begin{tabular}{ |l|l|l|l|l|l|l| } 
+    \hline
+    Sample & Fresh & Milk & Grocery & Frozen & Detergents\_Paper & Delicatessen\\[1ex]
+
+    \hline
+    
+      Segment 0 &9451  &1938  &2449  &2200  &307 &771 \\
+      Segment 1 &5424  &7780  &11532 &1123  &4444  &1136  \\
+      
+    \hline
+    \end{tabular}
+    \label{tableSegments}
+  \end{center}
+\end{table}
 
 
 \section*{Model Evaluation and Validation}
