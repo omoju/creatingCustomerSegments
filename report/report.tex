@@ -183,9 +183,8 @@ To gain a better understanding of the customers and how their data will transfor
 
 \begin{figure}[!hbtp]
 \centering
-    \subfloat[]{%
     \includegraphics[width=0.9\textwidth]{figures/percentileRanksSampleSpending}
-    \label{percentileRanksSampleSpending}}
+    \label{percentileRanksSampleSpending}
     
     \caption{\textbf{Percentile ranks of samples' category spending. }}
 \end{figure}
@@ -206,9 +205,9 @@ What would be better is to regress on a feature that has a \textbf{low} $R^2$ sc
 To get a better understanding of the dataset, we can construct a scatter matrix of each of the six product features present in the data. From figure \ref{scatterplot} we can see that the data for these features is not normally distributed. Its skewed to the right and has a long tail.
 \begin{figure}[!hbtp]
 \centering
-    \subfloat[]{%
+   
     \includegraphics[width=0.9\textwidth]{figures/scatterplot}
-    \label{scatterplot}}
+    \label{scatterplot}
     
     \caption{\textbf{A scatter matrix for each pair of features in the data. }}
 \end{figure}
@@ -238,12 +237,22 @@ We scaled the data to a more normal distribution and  removed outliers. We then 
 
 \begin{figure}[!hbtp]
 \centering
-    \subfloat[]{%
+    
     \includegraphics[width=0.9\textwidth]{figures/pca}
-    \label{scatterplot}}
+    \label{pca}
     
     \caption{\textbf{PCA on the log transformed data. }}
 \end{figure}
+
+\begin{figure}[!hbtp]
+\centering
+    
+    \includegraphics[width=0.9\textwidth]{figures/pcaCorrelation}
+    \label{pcaCorrelation}
+    
+    \caption{\textbf{Correlations on the PCA log transformed data. }}
+\end{figure}
+
 
 Unsurprisingly, dimensions 1 and 2 account for almost 72\% of the variance in the data. One of the interesting aspects of PCA is that the most interesting dynamics occur only in the first $k$ dimension, and then they fall off. In this case, I would say the first \emph{3} components highlight some clear customer segments.    
 
@@ -252,12 +261,12 @@ The first four principal components account for 93\% of the variance in the data
 \begin{itemize}
 
 \item First Principal Component Analysis - Dimension 1 \\
-The first principal component is made up of large positive weights in \texttt{Detergents\_Paper}, and lesser but still sizeable positive weights on \texttt{Grocery} and \texttt{Milk}. It also correlates with a decrease in \texttt{Fresh} and \texttt{Frozen}. This might represent spending in household staples products that are purchased together. 
+The first principal component is made up of large positive weights in \texttt{Detergents\_Paper}, and lesser but still sizable positive weights on \texttt{Grocery} and \texttt{Milk}. It also correlates with a decrease in \texttt{Fresh} and \texttt{Frozen}. This might represent spending in household staples products that are purchased together. 
 
 It is important to note that we have a lot of variance in customer spending in the correlated features of \texttt{Detergents\_Paper}, \texttt{Grocery} and \texttt{Milk} -- some customers buy more while other customers buy less in these three categories.
 
 \item Second Principal Component Analysis - Dimension 2\\
-The second principal component is made up of large positive weights in \texttt{Fresh} and \texttt{Frozen}, a lesser but still sizeable weight on \texttt{Delicatessen}, and smaller weights on \texttt{Milk} and \texttt{Grocery}. It also correlates with a slight decrease in \texttt{Detergent\_Paper}. This might represent spending in food items that are purchased together.
+The second principal component is made up of large positive weights in \texttt{Fresh} and \texttt{Frozen}, a lesser but still sizable weight on \texttt{Delicatessen}, and smaller weights on \texttt{Milk} and \texttt{Grocery}. It also correlates with a slight decrease in \texttt{Detergent\_Paper}. This might represent spending in food items that are purchased together.
 
 \item Third Principal Component Analysis - Dimension 3\\
 The third principal component is made up of a large positive weight in \texttt{Fresh}, a small positive weight in \texttt{Detergents\_Paper}, and a significantly lesser positive weight in \texttt{Grocery}. Also, the third principal component has a large negative weight in \texttt{Delicatessen} and a lesser negative weights in \texttt{Milk} and \texttt{Frozen} categories. This might represent spending more in the \texttt{Fresh} category while spending less in \texttt{Delicatessen} category.
@@ -266,15 +275,18 @@ We have some variance in customer spending in the correlated features of \texttt
 
 
 \item Fourth Principal Component Analysis - Dimension 4\\
-The fourth principal component is made up of a large positive weight in \texttt{Frozen} and a lesser but somewhat sizeable positive weight in \texttt{Detergents\_Paper}. Also, this principal component has large negative weight in \texttt{Delicatessen}, a smaller negative weight in \texttt{Fresh}, \texttt{Milk}, and a significantly smaller negative weight in \texttt{Grocery}. This might represent spending more on non-perishable products while simultaneously spending less on perishable products.
+The fourth principal component is made up of a large positive weight in \texttt{Frozen} and a lesser but somewhat sizable positive weight in \texttt{Detergents\_Paper}. Also, this principal component has large negative weight in \texttt{Delicatessen}, a smaller negative weight in \texttt{Fresh}, \texttt{Milk}, and a significantly smaller negative weight in \texttt{Grocery}. This might represent spending more on non-perishable products while simultaneously spending less on perishable products.
 \end{itemize}
 
 The first dimension seems to represent customers who spend \emph{significantly} on \texttt{Detergents\_Paper}, spend okay on \texttt{Milk} and \texttt{Grocery}, and none to less on \texttt{Fresh} produce and \texttt{Frozen} products. Another way to understand these first four dimensions is that they each represent a \emph{customer segment}
 
 \section*{Implementation}
-We selected the \textbf{KMeans} algorithm for the following reasons:
+
+Because the first two dimension represent a vast amount of explained variance in the data, we reduced the dataset down to those dimensions. We then performed clustering on the reduced dataset. 
+
+For clustering, we selected the \textbf{KMeans} algorithm for the following reasons:
 \begin{itemize} 
-\item We want to have a clear delineation of who the various customer segmets are. KMeans gives hard partitions and will allow for this.  
+\item We want to have a clear delineation of who the various customer segments are. KMeans gives hard partitions and will allow for this.  
 \item KMeans scales and is a simple and efficient algorithm unlike the Gaussian Mixture Model which does not scale. If we ever grow the dataset, this difference will save a lot of time in the future.  
 \item Easy to understand and compute
 \item It's efficient. The time requirement is $O(I*K*m*n)$ as long as the number of clusters is significantly less than m.
@@ -289,15 +301,17 @@ We selected the \textbf{KMeans} algorithm for the following reasons:
 Another algorithm we considered was the Gaussian Mixture Model. Which allows for soft-classification, i.e., data point can belong to more than one cluster with probabilities.
    
 
+We calculated the mean silhouette coefficient for the data points and determined that the optimal number of clusters to use in describing the data was two. 
 
+\begin{figure}[!hbtp]
+\centering
+    
+    \includegraphics[width=0.9\textwidth]{figures/meanSilhouetteScore}
+    \label{meanSilhouetteScore}
+    
+    \caption{\textbf{The mean silhouette coefficient score for several hypothetical clusters.}}
+\end{figure}
 
-\section*{Refinement}
-In this section, you will need to discuss the process of improvement you made upon the algorithms and techniques you used in your implementation. For example, adjusting parameters for certain models to acquire improved solutions would fall under the refinement category. Your initial and final solutions should be reported, as well as any significant intermediate results as necessary. Questions to ask yourself when writing this section:
-\begin{itemize}% 
-\item Has an initial solution been found and clearly reported?
-\item Is the process of improvement clearly documented, such as what techniques were used?
-\item Are intermediate and final solutions clearly reported as the process is improved?
-\end{itemize}
 %----------------------------------------------------------------------------------------
 %  CHAPTER 
 %----------------------------------------------------------------------------------------
