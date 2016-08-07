@@ -245,6 +245,32 @@ We scaled the data to a more normal distribution and  removed outliers. We then 
     \caption{\textbf{PCA on the log transformed data. }}
 \end{figure}
 
+Unsurprisingly, dimensions 1 and 2 account for almost 72\% of the variance in the data. One of the interesting aspects of PCA is that the most interesting dynamics occur only in the first $k$ dimension, and then they fall off. In this case, I would say the first \emph{3} components highlight some clear customer segments.    
+
+The first four principal components account for 93\% of the variance in the dataset. For this analysis, we have decided that a correlation value above 0.5+- is deemed significant. 
+
+\begin{itemize}
+
+\item First Principal Component Analysis - Dimension 1 \\
+The first principal component is made up of large positive weights in \texttt{Detergents\_Paper}, and lesser but still sizeable positive weights on \texttt{Grocery} and \texttt{Milk}. It also correlates with a decrease in \texttt{Fresh} and \texttt{Frozen}. This might represent spending in household staples products that are purchased together. 
+
+It is important to note that we have a lot of variance in customer spending in the correlated features of \texttt{Detergents\_Paper}, \texttt{Grocery} and \texttt{Milk} -- some customers buy more while other customers buy less in these three categories.
+
+\item Second Principal Component Analysis - Dimension 2\\
+The second principal component is made up of large positive weights in \texttt{Fresh} and \texttt{Frozen}, a lesser but still sizeable weight on \texttt{Delicatessen}, and smaller weights on \texttt{Milk} and \texttt{Grocery}. It also correlates with a slight decrease in \texttt{Detergent\_Paper}. This might represent spending in food items that are purchased together.
+
+\item Third Principal Component Analysis - Dimension 3\\
+The third principal component is made up of a large positive weight in \texttt{Fresh}, a small positive weight in \texttt{Detergents\_Paper}, and a significantly lesser positive weight in \texttt{Grocery}. Also, the third principal component has a large negative weight in \texttt{Delicatessen} and a lesser negative weights in \texttt{Milk} and \texttt{Frozen} categories. This might represent spending more in the \texttt{Fresh} category while spending less in \texttt{Delicatessen} category.
+
+We have some variance in customer spending in the correlated features of \texttt{Fresh}, \texttt{Detergents\_Paper} and \texttt{Grocery} -- some customers buy more while other customers buy less in these 3 categories.
+
+
+\item Fourth Principal Component Analysis - Dimension 4\\
+The fourth principal component is made up of a large positive weight in \texttt{Frozen} and a lesser but somewhat sizeable positive weight in \texttt{Detergents\_Paper}. Also, this principal component has large negative weight in \texttt{Delicatessen}, a smaller negative weight in \texttt{Fresh}, \texttt{Milk}, and a significantly smaller negative weight in \texttt{Grocery}. This might represent spending more on non-perishable products while simultaneously spending less on perishable products.
+\end{itemize}
+
+The first dimension seems to represent customers who spend \emph{significantly} on \texttt{Detergents\_Paper}, spend okay on \texttt{Milk} and \texttt{Grocery}, and none to less on \texttt{Fresh} produce and \texttt{Frozen} products. Another way to understand these first four dimensions is that they each represent a \emph{customer segment}
+
 \section*{Implementation}
 In this section, the process for which metrics, algorithms, and techniques that you implemented for the given data will need to be clearly documented. It should be abundantly clear how the implementation was carried out, and discussion should be made regarding any complications that occurred during this process. Questions to ask yourself when writing this section:
 \begin{itemize}% 
