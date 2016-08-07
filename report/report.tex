@@ -196,7 +196,26 @@ Let's figure out if it's possible to determine whether customers purchasing some
 
 To do this, we can train a supervised regression learner on a subset of the data with one feature removed, and then score how well that model can predict the removed feature.
 
-We predicted the impact of the feature '`Grocery`' on customers' spending habits. The prediction score was 0.682 out of 1. This score which tends towards being high indicates that it this feature is not necessary for identifying customers' spending habits. The reason is as follows: when customers spend on `Grocery` they also spend on other features, which means we can't decipher spending habits. What would be better is to regress on a feature that has a \textbf{low} $R^2$ score indicating low correlation.
+We predicted the impact of the feature \texttt{Grocery} on customers' spending habits. The prediction score was 0.682 out of 1. This score which tends towards being high indicates that it this feature is not necessary for identifying customers' spending habits. The reason is as follows: when customers spend on \texttt{Grocery} they also spend on other features, which means we can't decipher spending habits. What would be better is to regress on a feature that has a \textbf{low} $R^2$ score indicating low correlation.
+
+
+To get a better understanding of the dataset, we can construct a scatter matrix of each of the six product features present in the data. From figure \ref{scatterplot} we can see that the data for these features is not normally distributed. Its skewed to the right and has a long tail.
+\begin{figure}[!hbtp]
+\centering
+    \subfloat[]{%
+    \includegraphics[width=0.9\textwidth]{figures/scatterplot}
+    \label{scatterplot}}
+    
+    \caption{\textbf{A scatter matrix for each pair of features in the data. }}
+\end{figure}
+
+The pairs \texttt{Grocery} and \texttt{Detergents\_Paper} have a very strong correlation. From the scatterplot, one can see that the data for these two features looks like it could fit a nice diagonal. To formalize my intuition, I performed a pearson's correlation on these two features and got a 0.92 score, noting that a score of 1 is the highest a correlation can be.
+
+Another pair was \texttt{Grocery} and \texttt{Milk}. From the scatterplot, you can kind of see a trending along the diagonal. It had a correlation score of 0.73.
+
+Another pair was \texttt{Milk} and \texttt{Detergents\_Paper}, the pair had a correlation score of 0.66. This confirms my suspicions that \texttt{Grocery} is **not** a strong predictor of overall client spending habits.
+
+
 
 
 \section*{Outlier detection}
