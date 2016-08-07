@@ -191,6 +191,14 @@ To gain a better understanding of the customers and how their data will transfor
 \end{figure}
 
 
+\section*{Feature Relevance}
+Let's figure out if it's possible to determine whether customers purchasing some amount of one category of products will necessarily purchase some proportional amount of another category of products? 
+
+To do this, we can train a supervised regression learner on a subset of the data with one feature removed, and then score how well that model can predict the removed feature.
+
+We predicted the impact of the feature '`Grocery`' on customers' spending habits. The prediction score was 0.682 out of 1. This score which tends towards being high indicates that it this feature is not necessary for identifying customers' spending habits. The reason is as follows: when customers spend on `Grocery` they also spend on other features, which means we can't decipher spending habits. What would be better is to regress on a feature that has a \textbf{low} $R^2$ score indicating low correlation.
+
+
 \section*{Outlier detection}
 As part of the data exploration process, we were careful to analyze the data for potential outliers. One of the first task we did was visualize the salary of Enron executives \ref{salary}. From that visualization, it was clear that there was an outlier in the dataset. We found a data-point that was completely outside of a reasonable range as can be seen from figures \ref{salary} and \ref{SalaryBonus}. 
 
