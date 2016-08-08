@@ -177,40 +177,41 @@ To gain a better understanding of the customers and how their data will transfor
       2 &32717 &16784 &13626 &60869 &1272  &5609 \\
     \hline
     \end{tabular}
-    \label{tableSamplesCategorySpending}
   \end{center}
 \end{table}
 
 \begin{figure}[!hbtp]
 \centering
     \includegraphics[width=0.9\textwidth]{figures/percentileRanksSampleSpending}
-    \label{percentileRanksSampleSpending}
     
-    \caption{\textbf{Percentile ranks of samples' category spending. }}
+    
+    \caption{\textbf{Percentile ranks of samples' category spending. }}\label{percentileRanksSampleSpending}
 \end{figure}
 
+
+
+
+\section*{Sample Description}
+\label{sampleDescription}
 
 As a means of understanding and validating the usefulness of the learned customer segments, we predicted the kind of establishment (customer) each of the three samples represent.
 
 \begin{itemize}
 \item \textbf{Sample 0} \\
-
-From the heat-map in figure \ref{percentileRanksSampleSpending} we can see that this sample represents an establishment that spends very little on texttt{Frozen} category as compared to other product categories. Furthermore, this kind of establishment also spends significantly on texttt{Milk}, at eighty-three percentile to be exact. My intuition leads me to think that this \emph{might} be a \textbf{market}. 
+From the heat-map in figure \ref{percentileRanksSampleSpending} we can see that this sample represents an establishment that spends very little on texttt{Frozen} category as compared to other product categories. Furthermore, this kind of establishment also spends significantly on texttt{Milk}, at eighty-three percentile to be exact. Our intuition leads us to think that this \emph{might} be a \textbf{market}. 
 
 \item \textbf{Sample 1} \\ 
-This kind of establishment spends less on texttt{Delicatessen} at forty-first percentile and even significantly less on the texttt{Fresh} category. On the other categories, their spending is at well over the seventieth percentile range. My intuition leads me to believe this might be a place that serves meals and offers lodgings like a \textbf{hotel} or a \textbf{university} with a residence halls and adjoining cafeteria. 
+This kind of establishment spends less on texttt{Delicatessen} at forty-first percentile and even significantly less on the texttt{Fresh} category. On the other categories, their spending is at well over the seventieth percentile range. Our intuition leads us to believe this might be a place that serves meals and offers lodgings like a \textbf{hotel} or a \textbf{university} with a residence halls and adjoining cafeteria. 
 
 \item \textbf{Sample 2} \\
-This establishment spends significantly on all categories with the exception of the texttt{Detergents\_Paper} category where their spending is limited to the fifty-eight percentile. My guess is that this sample represents \textbf{wholesale retailer} like a ``costco" or ``Sam's club".
+This establishment spends significantly on all categories with the exception of the \texttt{Detergents\_Paper} category where their spending is limited to the fifty-eight percentile. Our guess is that this sample represents \textbf{wholesale retailer} like a ``Costco" or ``Sam's club".
 
 \end{itemize}
 
 
 
 \section*{Feature Relevance}
-Let's figure out if it's possible to determine whether customers purchasing some amount of one category of products will necessarily purchase some proportional amount of another category of products? 
-
-To do this, we can train a supervised regression learner on a subset of the data with one feature removed, and then score how well that model can predict the removed feature.
+We can determine whether customers purchasing some amount of one category of products will necessarily purchase some proportional amount of another category of products by training a supervised regression learner on a subset of the data with one feature removed, and then score how well that model can predict the removed feature.
 
 We predicted the impact of the feature \texttt{Grocery} on customers' spending habits. The prediction score was 0.682 out of 1. This score which tends towards being high indicates that it this feature is not necessary for identifying customers' spending habits. The reason is as follows: 
 \begin {itemize}
@@ -224,9 +225,9 @@ To get a better understanding of the dataset, we can construct a scatter matrix 
 \centering
    
     \includegraphics[width=0.9\textwidth]{figures/scatterplot}
-    \label{scatterplot}
     
-    \caption{\textbf{A scatter matrix for each pair of features in the data. }}
+    
+    \caption{\textbf{A scatter matrix for each pair of features in the data.}}\label{scatterplot}
 \end{figure}
 
 The pairs \texttt{Grocery} and \texttt{Detergents\_Paper} have a very strong correlation. From the scatterplot, one can see that the data for these two features looks like it could fit a nice diagonal. To formalize my intuition, I performed a pearson's correlation on these two features and got a 0.92 score, noting that a score of 1 is the highest a correlation can be.
@@ -324,9 +325,8 @@ We calculated the mean silhouette coefficient for the data points and determined
 \centering
     
     \includegraphics[width=0.9\textwidth]{figures/meanSilhouetteScore}
-    \label{meanSilhouetteScore}
     
-    \caption{\textbf{The mean silhouette coefficient score for several hypothetical clusters.}}
+    \caption{\textbf{The mean silhouette coefficient score for several hypothetical clusters.}}\label{meanSilhouetteScore}
 \end{figure}
 
 
@@ -334,9 +334,8 @@ We calculated the mean silhouette coefficient for the data points and determined
 \centering
     
     \includegraphics[width=0.9\textwidth]{figures/kMeansModelResults}
-    \label{kMeansModelResults}
     
-    \caption{\textbf{Cluster learning on PCA reduced data.} \textit{Centroids are marked by the numbers, while the transformed sample data are marked by the Xs}}
+    \caption{\textbf{Cluster learning on PCA reduced data.} \textit{Centroids are marked by the numbers, while the transformed sample data are marked by the Xs}}\label{kMeansModelResults}
 \end{figure}
 
 
@@ -375,16 +374,15 @@ Also, \textbf{Segment 1}'s spending on milk, grocery, frozen and detergents cate
 
 \section*{Model Evaluation and Validation}
 
-For each sample point, we predicted which customer segment best represents it. From our prediction, all three sample points were put in segment 1 as can be seen from figure 7. 
-
 \begin{figure}[!hbtp]
 \centering
     
     \includegraphics[width=0.6\textwidth]{figures/samplePointSegment}
-    \label{samplePointSegment}
     
-    \caption{\textbf{Predicted segments for sample data points.}}
+    \caption{\textbf{Predicted segments for sample data points.}}\label{samplePointSegment}
 \end{figure}
+
+For each sample point, we predicted which customer segment best represents it. From our prediction, all three sample points were put in segment 1 as can be seen from figure \ref{samplePointSegment} 
 
 Based on our intuition, \textbf{Sample 0} doesn't line up. We thought that sample was a small market, and \emph{segment 1} more like a place to caters to feeding and caring for children.
 
@@ -393,9 +391,18 @@ For \textbf{Sample 1} our reasoning holds. If we generalize \emph{child-care cen
 The predicted cluster for \textbf{Sample 2} doesn't line up. We thought of cluster 1 as a child-care center or restaurant, and \textbf{Sample 2} as a wholesale supermarket like Costo. From the clusters in figure \ref{kMeansModelResults}, we can see that this point is amongst the farthest away from the center, which corresponds to a numerically larger data point, so perhaps it still falls in line with our intuition.
 
 
-\section*{Justification}
+\begin{figure}[!hbtp]
+\centering
+    
+    \includegraphics[width=0.9\textwidth]{figures/regions}
+    
+    \caption{\textbf{PCA reduced data labeled by \texttt{Channel}.} \textit The transformed sample data is circled. }\label{regions}
+\end{figure}
 
 
+To determine how well our clustering algorithm and number of clusters chosen did, we compared it to the underlying distribution of Hotel/Restaurant/Cafe customers and Retailer customers. The KMeans algorithm with 2 clusters does rather well. It correctly identified the Retailers cluster, and the Hotels/Restaurants/Cafes as is evident from comparing figures \ref{kMeansModelResults} and \ref{regions}.
+
+The Retailer cluster matches nicely to what we referred to as a supermarket. The Hotels/Restaurants/Cafes also matches nicely as we previously said that we thought the place might be a child care center or a large restaurant chain that serves breakfast.
 %----------------------------------------------------------------------------------------
 %  CHAPTER 
 
