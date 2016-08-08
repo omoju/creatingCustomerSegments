@@ -6,7 +6,9 @@ A wholesale distributor recently tested a change to their delivery method for so
 
 The goal of this project is to find what types of customers the distributors have to help them make better, more informed business decisions in the future. The task is to use unsupervised learning techniques to see if any similarities exist between customers, and how to best segment customers into distinct categories.
 
+## Analysis
 
+An analysis of determining customer segment is found in the [report/report.pdf](report/report.pdf)
 
 ### Install
 
